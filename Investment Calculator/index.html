@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Investment</title>
+</head>
+
+<body>
+    <section class="header">
+        <nav>
+            <h1>Investment <span class="headSpan">Calculator</span></h1>
+        </nav>
+    </section>
+    <main>
+        <div class="container">
+            <div class="investmentCalc">
+                <div>
+                    <label>Starting Amount</label>
+                    <input type="text" name="Amount" id="Amount">
+                </div>
+                <div>
+                    <label>Additional Contribution</label>
+                    <input type="text" name="addAmt" id="addAmt">
+                </div>
+                <div>
+                    <label>Rate of Return</label>
+                    <div class="doubleInput">
+                        <input type="text" name="Rate" id="Rate">
+                        <select name="comp" id="comp">
+                            <option value="Annual">Annual</option>
+                            <option value="Semi-Annual">Semi-Annual</option>
+                            <option value="Quarterly">Quarterly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label>Years to Grow</label>
+                    <input type="text" name="time" id="time">
+                </div>
+            </div>
+            <div class="result">
+                <h3>This Investment will be worth:</h3>
+                <h1>&#x20B9<span class="FinalAmt">0.00</span></h1>
+            </div>
+        </div>
+        <button class="Button">
+            Calculate
+        </button>
+    </main>
+
+    <footer>Developed By: Niranjan Kumar Patel</footer>
+</body>
+<script src="script.js"></script>
+
+</html>

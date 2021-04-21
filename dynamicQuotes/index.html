@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>Quotes</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner">
+            <div class="box">
+                <p class="number">
+                    <img src="images/logo.png" alt="Tweet" srcset="" id="tweet" title="Tweet">
+                </p>
+                <div class="text">
+                    <i class="start-quote fas fa-quote-left"></i>
+                    <p id="quotes" class="quotes"></p>
+                    <i class="end-quote fas fa-quote-right"></i>
+
+                    <p id="author" class="author"></p>
+                </div>
+
+                <button class="btn">
+                    <p id="button">New Quotes</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const quotes = document.getElementById('quotes');
+    const author = document.getElementById('author');
+    const button = document.getElementById('button');
+    const tweet = document.getElementById('tweet');
+
+    let quoteData = "";
+    let realData = "";
+
+    const tweetNow = ()=>{
+            let tweetPost = `https://twitter.com/intent/tweet?text=${quoteData.text}  --${quoteData.author}`;
+            window.open(tweetPost);
+    }
+
+    const getQuotes = async () => {
+        const apiUrl = "https://type.fit/api/quotes";
+        try {
+
+            const getNewQuotes = () => {
+                let randomNum = Math.floor(Math.random() * 20);
+                quoteData = realData[randomNum];
+
+                quoteData.author = quoteData.author == null ? "unknown" : quoteData.author;
+
+                quotes.innerHTML = `${quoteData.text}`;
+                author.innerHTML = `${quoteData.author}`;
+
+            }
+            let data = await fetch(apiUrl);
+            realData = await data.json();
+            getNewQuotes();
+
+            //Event handling
+            tweet.addEventListener('click',()=>{
+                tweetNow();
+            })
+            button.addEventListener('click', () => {
+                getNewQuotes();
+            })
+        } catch (error) {
+
+        }
+    }
+    getQuotes();
+</script>
+
+</html>
